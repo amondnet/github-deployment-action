@@ -1,0 +1,55 @@
+name: 'Github Deployment Actions'
+description: 'GitHub action to create deployment'
+inputs:
+  github-token:
+    required: true
+  action-status:
+    required: false
+  task:
+    required: false
+    description: 'Specifies a task to execute (e.g., deploy or deploy:migrations). Default: deploy'
+    default: 'deploy'
+  auto_merge:
+    required: false
+    description: "Attempts to automatically merge the default branch into the requested ref, if it's behind the default branch. Default: true"
+    default: 'true'
+  required_contexts:
+    required: false
+  payload:
+    required: false
+    description: 'JSON payload with extra information about the deployment. Default: ""'
+    default: ''
+  environment:
+    required: false
+    description: 'Name for the target deployment environment (e.g., production, staging, qa). Default: production'
+    default: production
+  description:
+    required: false
+    description: 'Short description of the deployment. Default: ""'
+    default: ''
+  transient_environment:
+    required: false
+    default: false
+  production_environment:
+    required: false
+  deployment_id:
+    requifed: false
+  state:
+    required: true
+    default: 'pending'
+  target_url:
+    required: false
+    default: ''
+  log_url:
+    required: false
+    default: ''
+
+outputs:
+  deployment-id:
+    description: 'deployment id'
+  deployment-url:
+    description: 'deployment url'
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
